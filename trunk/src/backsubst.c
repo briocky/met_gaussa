@@ -19,7 +19,7 @@ int  backsubst(Matrix *x, Matrix *mat, Matrix *b) {
         }
         if (A[w][w] == 0)
         	return 1;
-        X[0][w] = (B[w] - s) / A[w][w];
+        X[0][w] = (B[w][b->c-1] - s) / A[w][w];
     }
     
 	return 0;
