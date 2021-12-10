@@ -15,11 +15,11 @@ int  backsubst(Matrix *x, Matrix *mat, Matrix *b) {
 	for(int w = mat -> r - 1; w >= 0; w--){
         double s = 0;
         for(int k = w + 1; k < mat -> r; k++){
-            s += A[w][k] * X[0][k];
+            s += A[w][k] * X[k][0];
         }
         if (A[w][w] == 0)
         	return 1;
-        X[0][w] = (B[w][b->c-1] - s) / A[w][w];
+        X[w][0] = (B[w][0] - s) / A[w][w];
     }
     
 	return 0;
