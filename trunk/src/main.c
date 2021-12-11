@@ -17,14 +17,16 @@ int main(int argc, char ** argv) {
 	printToScreen(b);
 
 	res = eliminate(A,b);
-	x = createMatrix(b->r, 1);
-	if (x != NULL) {
-		res = backsubst(x,A,b);
+	if(res == 0){ 
+		x = createMatrix(b->r, 1);
+		if (x != NULL) {
+			res = backsubst(x,A,b);
 
-		printToScreen(x);
-	  freeMatrix(x);
-	} else {
-					fprintf(stderr,"Błąd! Nie mogłem utworzyć wektora wynikowego x.\n");
+			printToScreen(x);
+		freeMatrix(x);
+		} else {
+						fprintf(stderr,"Błąd! Nie mogłem utworzyć wektora wynikowego x.\n");
+		}
 	}
 
 	freeMatrix(A);
