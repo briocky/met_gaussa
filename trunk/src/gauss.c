@@ -3,11 +3,15 @@
 /**
  * Zwraca 0 - elimnacja zakonczona sukcesem
  * Zwraca 1 - macierz osobliwa - dzielenie przez 0
+ * Zwraca 2 - inny blad
  */
 int eliminate(Matrix *mat, Matrix *b){
 	double **A = mat->data;
 	double **B = b->data;
 
+	if(b->r!=mat->r || b->c!=1)
+		return 2;
+		
 	for( int k=0 ;k<mat->c-1; k++){
         for(int w=k+1; w<mat->c;w ++){
 			if(A[k][k]==0)//dzielenie przez zero
