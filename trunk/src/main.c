@@ -16,18 +16,18 @@ int main(int argc, char ** argv) {
 	printToScreen(A);
 	printToScreen(b);
 
-	res = eliminate(A,b);
-	if(res == 0){ 
+	if((res = eliminate(A,b))==0){
 		x = createMatrix(b->r, 1);
 		if (x != NULL) {
 			res = backsubst(x,A,b);
 
 			printToScreen(x);
-		freeMatrix(x);
+			freeMatrix(x);
 		} else {
 						fprintf(stderr,"Błąd! Nie mogłem utworzyć wektora wynikowego x.\n");
 		}
-	}
+	}else
+		printf("Nie udalo mi sie rozwiazac tego ukladu");
 
 	freeMatrix(A);
 	freeMatrix(b);
