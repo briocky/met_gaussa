@@ -9,4 +9,6 @@
  */
 int eliminate(Matrix *mat, Matrix *b);
 
+void wyb_glowny_elem(Matrix *mat, Matrix *b, int k);
+
 #endif
