@@ -7,8 +7,9 @@
 
 //Zerowanie macierzy A
 void zeruj(Matrix *mat, int size) {
-	for (int i = 0; i < size; i++) {
-		for (int j = 0; j < size; j++)
+	int i, j;
+	for (i = 0; i < size; i++) {
+		for (j = 0; j < size; j++)
 			mat -> data[i][j] = 0;
 	}
 }
@@ -16,8 +17,9 @@ void zeruj(Matrix *mat, int size) {
 //Funkcja wylicza wartości macierzy b na podstawie A i x
 void licz_b(Matrix *mat, Matrix *b, Matrix *x, int size) {
 	double suma = 0;
-	for (int i = 0; i < size; i++) {
-		for (int j = i; j < size; j++) {
+	int i, j;
+	for (i = 0; i < size; i++) {
+		for (j = i; j < size; j++) {
 			suma += x -> data[j][0] * mat -> data[i][j];
 		}
 	b -> data[i][0] = suma;
@@ -34,14 +36,15 @@ int main() {
 	Matrix *x_obliczone = createMatrix(size, 1);
 
 	zeruj(A, size);
+	int i, j;
 
 	//Losuje jakieś losowe rozwiązania
-	for (int i = 0; i < size; i++)
+	for (i = 0; i < size; i++)
 		x -> data[i][0] = (double)rand() / RAND_MAX * 10;
 
 	//Losuje jakieś losowe współczynniki
-	for (int i = 0; i < size; i++) {
-		for (int j = i; j < size; j++) {
+	for (i = 0; i < size; i++) {
+		for (j = i; j < size; j++) {
 			A -> data[i][j] = (double)rand() / RAND_MAX * 10;
 		}
 	}
@@ -63,7 +66,7 @@ int main() {
 			fprintf(stderr, "Błąd, nieprawidłowe rozmiary maciery!");
 			break;
 		case 0:
-			for (int i = 0; i < size; i++) {
+			for (i = 0; i < size; i++) {
 				printf("Różnica %d: %lf\n", i, fabs(x_obliczone -> data[i][0] - x -> data[i][0]));
 			}
 			break;
