@@ -1,9 +1,7 @@
 #include "gauss.h"
+#include <stdio.h>
+#include "mat_io.h"
 
-/**
- * Zwraca 0 - elimnacja zakonczona sukcesem
- * Zwraca 1 - macierz osobliwa - dzielenie przez 0
- */
 void wyb_glowny_elem(Matrix *mat, Matrix *b, int kol){
 	int max_wartosc = kol; //wiersz w ktorym wystapila najwieksza liczba(licząc od przekatnej w doł)
 	int w, c;
@@ -28,9 +26,17 @@ void wyb_glowny_elem(Matrix *mat, Matrix *b, int kol){
 
 }
 
+/**
+ * Zwraca 0 - elimnacja zakonczona sukcesem
+ * Zwraca 1 - macierz osobliwa - dzielenie przez 0
+ * Zwraca 2 - inny blad
+ */
 int eliminate(Matrix *mat, Matrix *b){
 	double **A = mat->data;
 	double **B = b->data;
+
+	if(b->r!=mat->r || b->c!=1)
+		return 2;
 
 	for( int k=0 ;k<mat->c-1; k++){
 		wyb_glowny_elem(mat, b, k);
@@ -44,9 +50,6 @@ int eliminate(Matrix *mat, Matrix *b){
             B[w][b->c-1]-= q * B[k][b->c-1];
         }
     }
-    /**
-  	 * Tutaj należy umieścić właściwą implemntację.
-		 */
 
 	return 0;
 }
