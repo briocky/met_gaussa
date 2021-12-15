@@ -66,6 +66,8 @@ int main() {
 			fprintf(stderr, "Błąd, nieprawidłowe rozmiary maciery!");
 			break;
 		case 0:
+			/* Nie porównuję wyników, ponieważ są to liczby zmiennoprzecinkowe i mogą  występować między nimi nieznaczne różnice
+			Zamiast tego wypisuję te różnice, które są z ogromną dokładnością porówynwalne do 0 */
 			for (i = 0; i < size; i++) {
 				printf("Różnica %d: %lf\n", i, fabs(x_obliczone -> data[i][0] - x -> data[i][0]));
 			}
